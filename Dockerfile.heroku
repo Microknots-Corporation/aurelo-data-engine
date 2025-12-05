@@ -1,4 +1,4 @@
-FROM heartexlabs/label-studio:latest
+FROM aurelo-data-engine:latest
 
 ENV LABEL_STUDIO_ONE_CLICK_DEPLOY=1 \
     STORAGE_PERSISTENCE=0

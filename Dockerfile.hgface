@@ -1,4 +1,4 @@
-FROM heartexlabs/label-studio:develop
+FROM aurelo-data-engine:develop
 
 ENV LABEL_STUDIO_DEPLOYMENT_TYPE=docker
 ENV LABEL_STUDIO_CLOUD_PROVIDER=hfspaces
