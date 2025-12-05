@@ -19,7 +19,7 @@ services:
       context: .                   # build from YOUR aurelo-data-engine repo
       dockerfile: Dockerfile.development
     image: aurelo-data-engine:dev
-    container_name: aurelo-data-engine
+    container_name: aurelo-data-engine-app
     restart: unless-stopped
     depends_on:
       - db
