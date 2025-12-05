@@ -14,8 +14,8 @@ const PROJECTS_TO_SHOW = 10;
 
 const resources = [
   {
-    title: "Documentation",
-    url: "https://labelstud.io/guide/",
+    title: "Aurel Data",
+    url: "aurelodata.com",
   },
   {
     title: "API Documentation",
@@ -176,7 +176,7 @@ export const HomePage: Page = () => {
           </SimpleCard>
           <div className="flex gap-2 items-center">
             <IconHumanSignal />
-            <span className="text-neutral-content-subtle">Label Studio Version: Community</span>
+            <span className="text-neutral-content-subtle">Aurelo Version: 1.2.1</span>
           </div>
         </section>
       </div>
