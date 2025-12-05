@@ -1,38 +1,35 @@
 # Simple dev-focused Dockerfile for aurelo-data-engine (Label Studio fork)
-
 FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PIP_NO_CACHE_DIR=off \
-    PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_DEFAULT_TIMEOUT=100
+ PYTHONDONTWRITEBYTECODE=1 \
+ PIP_NO_CACHE_DIR=off \
+ PIP_DISABLE_PIP_VERSION_CHECK=on \
+ PIP_DEFAULT_TIMEOUT=100
 
 # OS deps
 RUN --mount=type=cache,target="/var/cache/apt",sharing=locked \
-    --mount=type=cache,target="/var/lib/apt/lists",sharing=locked \
-    set -eux; \
-    apt-get update; \
-    apt-get install --no-install-recommends -y \
-        build-essential \
-        git \
-        libexpat1 \
-        curl; \
-    apt-get autoremove -y
+ --mount=type=cache,target="/var/lib/apt/lists",sharing=locked \
+ set -eux; \
+ apt-get update; \
+ apt-get install --no-install-recommends -y \
+ build-essential \
+ git \
+ libexpat1 \
+ curl; \
+ apt-get autoremove -y
 
-# App directory
 WORKDIR /label-studio
 
 # Install Python deps
 COPY requirements.txt .
 RUN python -m pip install -U pip && \
-    pip install -r requirements.txt
+ pip install -r requirements.txt
 
 # Copy repo (for non-mounted usage; we still bind-mount in compose)
 COPY . .
 
 ENV PORT=8080
-
 EXPOSE 8080
 
 CMD bash -lc "python manage.py migrate && python manage.py runserver 0.0.0.0:${PORT}"
